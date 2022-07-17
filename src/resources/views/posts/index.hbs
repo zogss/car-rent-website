@@ -1,0 +1,21 @@
+<div class="d-flex mt-5 p-4">
+  <div class="col-6">
+    <h1>
+      Posts
+    </h1>
+  </div>
+  <div class="col-6 d-flex justify-content-end">
+    <a class="btn btn-primary" href="/posts/create">
+      Criar Post
+    </a>
+  </div>
+</div>
+<ul class="list-group mt-5">
+  {{#each posts as |post|}}
+    <li class="list-group-item">
+      <a href="/posts/{{post._id}}">
+        {{post.title}}
+      </a>
+    </li>
+  {{/each}}
+</ul>

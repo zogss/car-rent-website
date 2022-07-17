@@ -1,0 +1,10 @@
+<h1>
+  Atualizar Post
+</h1>
+<form action="/posts/{{post._id}}?_method=PUT" method="POST">
+  <input type="text" name="title" placeholder="Título" value="{{post.title}}" />
+  <textarea name="content" placeholder="Conteúdo">{{post.content}}</textarea>
+  <button type="submit">
+    Editar
+  </button>
+</form>

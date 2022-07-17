@@ -1,0 +1,9 @@
+version: '3.0'
+services:
+  blog_mongo:
+    image: mongo
+    container_name: car_rent
+    ports:
+      - "27017:27017"  
+    networks:
+      - default

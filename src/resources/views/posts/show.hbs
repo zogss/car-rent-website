@@ -1,0 +1,32 @@
+<div>
+  <h1>
+    Exibir Post: #
+    {{post._id}}
+  </h1>
+  <a href="/posts/{{post._id}}/edit">
+    Editar
+  </a>
+  <form action="/posts/{{post._id}}?_method=DELETE" method="POST">
+    <button type="submit">
+      Deletar
+    </button>
+  </form>
+  <p>
+    <strong>
+      Título:
+    </strong>
+    {{post.title}}
+  </p>
+  <p>
+    <strong>
+      Conteúdo:
+    </strong>
+    {{post.content}}
+  </p>
+  <p>
+    <strong>
+      Autor:
+    </strong>
+    {{post.seller.name}}
+  </p>
+</div>
