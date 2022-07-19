@@ -1,0 +1,62 @@
+<div class="container my-5 p-5 card bg-dark text-white" style="border-radius: 1rem;">
+  <h1>
+    Criar Post
+  </h1>
+  <form action="/posts" method="POST">
+    <div class="row d-grid align-items-center h-100 gap-3">
+      <input
+        type="text"
+        name="title"
+        class="form-control"
+        placeholder="Título"
+      />
+      <input
+        type="number"
+        class="form-control"
+        name="valuePerDay"
+        placeholder="Valor diário"
+      />
+      <input
+        type="text"
+        class="form-control"
+        name="model"
+        placeholder="Modelo"
+      />
+      <input
+        type="text"
+        class="form-control"
+        name="brand"
+        placeholder="Marca"
+      />
+      <input
+        type="number"
+        class="form-control"
+        name="year"
+        placeholder="Ano"
+      />
+      <input
+        type="text"
+        class="form-control"
+        name="plate"
+        placeholder="Placa"
+      />
+      <input
+        type="string"
+        class="form-control"
+        name="size"
+        placeholder="Tamanho"
+      />
+      <input
+        type="number"
+        class="form-control"
+        name="maxSpeed"
+        placeholder="Velocidade máxima"
+      />
+    </div>
+    <div class="d-flex justify-content-center align-items-center mt-5">
+      <button type="submit" class="btn btn-primary w-25">
+        Criar
+      </button>
+    </div>
+  </form>
+</div>

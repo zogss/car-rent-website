@@ -1,0 +1,83 @@
+<div class="container mt-5 bg-dark text-white rounded h-100 p-5">
+  <h1 class="border-bottom border-light">
+    <strong>
+      {{post.title}}
+    </strong>
+  </h1>
+  <div class="my-2 justify-content-start">
+    <p class="fs-5">
+      <strong>
+        R$:
+        {{post.valuePerDay}}
+      </strong>
+    </p>
+  </div>
+
+  <div class="my-1 bg-white bg-opacity-25">
+    <p class="p-2">
+      <strong>
+        Marca:
+      </strong>
+      {{post.brand}}
+    </p>
+  </div>
+
+  <div class="my-1 bg-white bg-opacity-25">
+    <p class="p-2">
+      <strong>
+        Modelo:
+      </strong>
+      {{post.model}}
+    </p>
+  </div>
+
+  <div class="my-1 bg-white bg-opacity-25">
+    <p class="p-2">
+      <strong>
+        Ano:
+      </strong>
+      {{post.year}}
+    </p>
+  </div>
+
+  <p>Caracteristicas:</p>
+  <div class="d-flex gap-4">
+    <div class="mb-4 bg-white bg-opacity-25 justify-content-start" style="width: 33.3%;">
+      <p class="p-2">
+        {{post.plate}}
+      </p>
+    </div>
+
+    <div class="mb-4 bg-white bg-opacity-25 justify-content-start" style="width: 33.3%;">
+      <p class="p-2">
+        {{post.size}}
+      </p>
+    </div>
+
+    <div class="mb-4 bg-white bg-opacity-25 justify-content-start" style="width: 33.3%;">
+      <p class="p-2">
+        {{post.maxSpeed}}
+      </p>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <p class="p-2">
+      <strong>
+        Vendedor:
+      </strong>
+      {{post.seller.name}}
+    </p>
+  </div>
+
+  <div class="d-flex justify-content-center align-items-center gap-4 mt-5">
+    <a href="/posts/{{post._id}}/edit" class="btn btn-primary">
+      Editar
+    </a>
+    <form action="/posts/{{post._id}}?_method=DELETE" method="POST">
+      <button type="submit" class="btn btn-primary">
+        Deletar
+      </button>
+    </form>
+  </div>
+</div>

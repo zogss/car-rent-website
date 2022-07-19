@@ -1,0 +1,22 @@
+<div class="d-flex p-4">
+  <div class="col-6">
+    <h1>
+      Posts
+    </h1>
+  </div>
+  <div class="col-6 d-flex justify-content-end align-items-center">
+    <a class="btn btn-primary py-2" href="/posts/create">
+      Criar Post
+    </a>
+  </div>
+</div>
+<ul class="list-group my-5 gap-3 rounded-0">
+  {{#each posts as |post|}}
+    <li class="list-group-item bg-dark bg-opacity-75 rounded-2">
+      <a href="/posts/{{post._id}}" class="text-white text-decoration-none">
+        {{post.title}}
+        {{post.value}}
+      </a>
+    </li>
+  {{/each}}
+</ul>

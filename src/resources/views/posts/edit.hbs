@@ -1,0 +1,73 @@
+<div class="my-5 p-5 card bg-dark text-white" style="border-radius: 1rem;">
+  <h1>
+    Atualizar Post
+  </h1>
+  <form action="/posts/{{post._id}}?_method=PUT" method="POST" class="w-auto">
+    <div class="row d-grid align-items-center h-100 gap-3 m-auto">
+      <input
+        type="text"
+        name="title"
+        class="form-control"
+        placeholder="Título"
+        value="{{post.title}}"
+      />
+      <input
+        type="text"
+        class="form-control"
+        name="valuePerDay"
+        placeholder="Preço"
+        value="{{post.valuePerDay}}"
+      />
+      <input
+        type="text"
+        class="form-control"
+        name="model"
+        placeholder="Marca"
+        value="{{post.model}}"
+      />
+      <input
+        type="text"
+        class="form-control"
+        name="brand"
+        placeholder="Preço"
+        value="{{post.brand}}"
+      />
+      <input
+        type="number"
+        class="form-control"
+        name="year"
+        placeholder="Ano"
+        value="{{post.year}}"
+      />
+      <input
+        type="text"
+        class="form-control"
+        name="plate"
+        placeholder="Placa"
+        value="{{post.plate}}"
+      />
+      <input
+        type="text"
+        class="form-control"
+        name="size"
+        placeholder="Tamanho"
+        value="{{post.size}}"
+      />
+      <input
+        type="number"
+        class="form-control"
+        name="maxSpeed"
+        placeholder="Velocidade máxima"
+        value="{{post.maxSpeed}}"
+      />
+    </div>
+    <div class="justify-content-center align-items-center mt-5">
+      <button type="submit" class="btn btn-primary">
+        Editar
+      </button>
+    </div>
+    {{#if message}}
+    <h1>bunda</h1>
+    {{/if}}
+  </form>
+</div>
