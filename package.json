@@ -8,6 +8,10 @@
   "private": true,
   "scripts": {
     "dev": "nodemon src/server.js",
+    "build": "sucrase ./src -d ./dist --transforms imports",
+    "prebuild": "rimraf dist/",
+    "postbuild": "copyfiles -u 1 src/{resources,public}/**/* dist/",
+    "start": "node dist/server.js",
     "mix:watch": "webpack --watch --progress --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "dependencies": {
@@ -30,7 +34,9 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "copyfiles": "^2.4.1",
     "nodemon": "^2.0.19",
+    "rimraf": "^3.0.2",
     "sucrase": "^3.23.0"
   }
 }
