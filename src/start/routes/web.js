@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { authorize } from "passport";
 import AuthController from "../../app/controllers/AuthController";
 import PostsController from "../../app/controllers/PostsController";
 import UsersController from "../../app/controllers/UsersControllers";
@@ -22,6 +23,7 @@ routes.get("/login", AuthController.index);
 routes.post("/login", AuthController.store);
 routes.get("/register", UsersController.create);
 routes.post("/users", UsersController.store);
+routes.post("/logout", AuthController.logout);
 
 
 export default routes;

@@ -71,11 +71,18 @@ class PostsController {
     // deletar um model no banco de dados
     try {
       const post = await Posts.findById(req.params.id);
-      if (!post) {
+      const user = await Users.findById(req.session.passport.user);
+
+      if (!post || !user) {
         return res.status(404).render("errors/404");
       }
+
+      if (post.seller.toString() == user._id.toString()) {
       await post.remove();
       res.redirect("/posts");
+      } else {
+        return res.status(404).render("errors/404");
+      }
     } catch (err) {
       return res.status(404).render("errors/404");
     }
@@ -96,10 +103,16 @@ class PostsController {
     // exibir a tela de edição do model para o usuário
     try {
       const post = await Posts.findById(req.params.id);
-      if (!post) {
-        return res.status(400).render("errors/404");
+      const user = await Users.findById(req.session.passport.user);
+
+      if (!post || !user) {
+        return res.status(404).render("errors/404");
       }
+      if (post.seller.toString() == user._id.toString()) {
       res.render("posts/edit", { post });
+      } else {
+        return res.status(404).render("errors/404");
+      }
     } catch (err) {
       return res.status(400).render("errors/404");
     }
