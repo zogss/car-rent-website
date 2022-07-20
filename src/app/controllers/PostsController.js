@@ -8,6 +8,7 @@ class PostsController {
    */
   async store(req, res) {
     // armazenar dados do model no banco de dados
+    try {
     const schema = Yup.object().shape({
       title: Yup.string().required(),
       model: Yup.string().required(),
@@ -28,6 +29,9 @@ class PostsController {
 
     await Posts.create({ ...data, seller: req.user._id });
     res.redirect("/posts");
+    } catch (error) {
+      return res.status(404).render("errors/404");
+    }
   }
   /**
    * @param {import('express').Request} req
