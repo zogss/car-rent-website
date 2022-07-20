@@ -8,6 +8,7 @@ class UsersController {
    */
   async store(req, res) {
     // armazenar dados do model no banco de dados
+    try {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
       email: Yup.string().required().email(),
@@ -25,6 +26,9 @@ class UsersController {
       }
       return res.redirect("/");
     });
+    } catch (error) {
+      return res.redirect("/register");
+    }
   }
   /**
    * @param {import('express').Request} req
