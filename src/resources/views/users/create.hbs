@@ -4,15 +4,16 @@
 >
   <form
     action="/users"
-    class="h-100 container"
+    class="h-100 container needs-validation"
     method="post"
+    novalidate
   >
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="card bg-dark text-white" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
+          <div class="card-body text-center p-5 pt-5">
 
-            <div class="mb-md-5 mt-md-4 pb-5">
+            <div class="mb-md-5 mt-md-4 mb-5">
 
               <h2 class="fw-bold mb-2 text-uppercase">Registration</h2>
               <p class="text-white-50 mb-5">Create your account here!</p>
@@ -20,51 +21,75 @@
               <div
                 class="form-outline form-white mb-4 text-start fw-semibold fs-5"
               >
-                <label class="form-label" for="name">Name</label>
+                <label class="form-label" for="name">Name:</label>
                 <input
                   type="text"
                   class="form-control form-control-lg"
                   id="name"
                   name="name"
-                  placeholder="Nome"
+                  placeholder="Name"
+                  aria-describedby="inputGroupPrepend"
+                  required
                 />
-              </div>
-
-              <div class="form-outline form-white mb-4 text-start fw-semibold fs-5">
-                <label class="form-label" for="email">Email</label>
-                <input
-                  type="email"
-                  class="form-control form-control-lg"
-                  id="email"
-                  name="email"
-                  placeholder="Email"
-                />
+                <div class="invalid-feedback">
+                  Por favor, preencha seu nome!
+                </div>
               </div>
 
               <div
                 class="form-outline form-white mb-4 text-start fw-semibold fs-5"
               >
-                <label class="form-label" for="password">Password</label>
+                <label class="form-label" for="email">Email:</label>
+                <input
+                  type="email"
+                  class="form-control form-control-lg"
+                  id="email"
+                  name="email"
+                  placeholder="email@email.com"
+                  aria-describedby="inputGroupPrepend"
+                  required
+                />
+                <div class="invalid-feedback">
+                  Por favor, preencha o e-mail!
+                </div>
+              </div>
+
+              <div
+                class="form-outline form-white mb-4 text-start fw-semibold fs-5"
+              >
+                <label class="form-label" for="password">Password:</label>
                 <input
                   type="password"
                   id="password"
                   name="password"
                   placeholder="Password"
                   class="form-control form-control-lg"
+                  aria-describedby="inputGroupPrepend"
+                  minlength="8"
+                  required
                 />
+                <div class="invalid-feedback">
+                  Por favor, preencha a senha!
+                </div>
               </div>
 
               <div
                 class="form-outline form-white mb-4 text-start fw-semibold fs-5"
               >
-                <label class="form-label" for="password">Password confirmation</label>
+                <label class="form-label" for="password">Password confirmation:</label>
                 <input
                   type="password"
                   id="password"
                   name="password_confirmation"
                   placeholder="Password confirmation"
                   class="form-control form-control-lg"
+                  aria-describedby="inputGroupPrepend"
+                  minlength="8"
+                  required
                 />
+                <div class="invalid-feedback">
+                  Por favor, confirme a senha!
+                </div>
               </div>
 
               <button
@@ -84,4 +109,16 @@
       </div>
     </div>
   </form>
+  <script>
+    // Exemplo de JavaScript inicial para desativar envios de formulário, se
+    houver campos inválidos. (function() { 'use strict';
+    window.addEventListener('load', function() { // Pega todos os formulários
+    que nós queremos aplicar estilos de validação Bootstrap personalizados. var
+    forms = document.getElementsByClassName('needs-validation'); // Faz um loop
+    neles e evita o envio var validation = Array.prototype.filter.call(forms,
+    function(form) { form.addEventListener('submit', function(event) { if
+    (form.checkValidity() === false) { event.preventDefault();
+    event.stopPropagation(); } form.classList.add('was-validated'); }, false);
+    }); }, false); })();
+  </script>
 </section>

@@ -19,32 +19,45 @@
               <p class="text-white-50 mb-5">Please enter your login and
                 password!</p>
 
-              <div class="form-outline form-white mb-4 text-start fw-semibold fs-5">
-                <label class="form-label" for="email">Email</label>
+              <div
+                class="form-outline form-white mb-4 text-start fw-semibold fs-5"
+              >
+                <label class="form-label" for="email">E-mail:</label>
                 <input
                   type="email"
                   class="form-control form-control-lg"
                   id="email"
                   name="email"
-                  placeholder="Email"
+                  placeholder="Ex: name@email.com"
+                  aria-describedby="inputGroupPrepend"
+                  required
                 />
+                <div class="invalid-feedback">
+                  Por favor, preencha o e-mail!
+                </div>
               </div>
 
-              <div class="form-outline form-white mb-4 text-start fw-semibold fs-5">
-                <label class="form-label" for="password">Password</label>
+              <div
+                class="form-outline form-white mb-4 text-start fw-semibold fs-5"
+              >
+                <label class="form-label" for="password">Password:</label>
                 <input
                   type="password"
+                  class="form-control form-control-lg"
                   id="password"
                   name="password"
-                  placeholder="Password"
-                  class="form-control form-control-lg"
+                  placeholder="Ex: password"
+                  aria-describedby="inputGroupPrepend"
+                  minlength="8"
+                  required
                 />
+                <div class="invalid-feedback">
+                  Por favor, preencha a senha!
+                </div>
               </div>
 
-              <p class="mb-4 pb-lg-2"><a
-                  class="text-white-50"
-                  href="#!"
-                >Forgot password?</a></p>
+              <p class="mb-4 pb-lg-2"><a class="text-white-50" href="#!">Forgot
+                  password?</a></p>
 
               <button
                 class="btn btn-outline-light btn-lg px-5"
@@ -63,4 +76,16 @@
       </div>
     </div>
   </form>
+  <script>
+    // Exemplo de JavaScript inicial para desativar envios de formulário, se
+    houver campos inválidos. (function() { 'use strict';
+    window.addEventListener('load', function() { // Pega todos os formulários
+    que nós queremos aplicar estilos de validação Bootstrap personalizados. var
+    forms = document.getElementsByClassName('needs-validation'); // Faz um loop
+    neles e evita o envio var validation = Array.prototype.filter.call(forms,
+    function(form) { form.addEventListener('submit', function(event) { if
+    (form.checkValidity() === false) { event.preventDefault();
+    event.stopPropagation(); } form.classList.add('was-validated'); }, false);
+    }); }, false); })();
+  </script>
 </section>
