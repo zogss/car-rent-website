@@ -9,23 +9,23 @@ class UsersController {
   async store(req, res) {
     // armazenar dados do model no banco de dados
     try {
-    const schema = Yup.object().shape({
-      name: Yup.string().required(),
-      email: Yup.string().required().email(),
-      password: Yup.string().required().min(8),
-      password_confirmation: Yup.string()
-        .required()
-        .min(8)
-        .oneOf([Yup.ref("password"), null]),
-    });
-    const data = await schema.validate(req.body);
-    const user = await Users.create(data);
-    req.login(user, (err) => {
-      if (err) {
-        return res.redirect("/register");
-      }
-      return res.redirect("/");
-    });
+      const schema = Yup.object().shape({
+        name: Yup.string().required(),
+        email: Yup.string().required().email(),
+        password: Yup.string().required().min(8),
+        password_confirmation: Yup.string()
+          .required()
+          .min(8)
+          .oneOf([Yup.ref("password"), null]),
+      });
+      const data = await schema.validate(req.body);
+      const user = await Users.create(data);
+      req.login(user, (err) => {
+        if (err) {
+          return res.redirect("/register");
+        }
+        return res.redirect("/");
+      });
     } catch (error) {
       return res.redirect("/register");
     }

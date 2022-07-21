@@ -9,28 +9,28 @@ class PostsController {
   async store(req, res) {
     // armazenar dados do model no banco de dados
     try {
-    const schema = Yup.object().shape({
-      title: Yup.string().required(),
-      model: Yup.string().required(),
-      brand: Yup.string().required(),
-      year: Yup.number().required(),
-      valuePerDay: Yup.string().required(),
-      plate: Yup.string().required(),
-      size: Yup.string().required(),
-      maxSpeed: Yup.number().required(),
-    });
+      const schema = Yup.object().shape({
+        title: Yup.string().required(),
+        model: Yup.string().required(),
+        brand: Yup.string().required(),
+        year: Yup.number().required(),
+        valuePerDay: Yup.string().required(),
+        plate: Yup.string().required(),
+        size: Yup.string().required(),
+        maxSpeed: Yup.number().required(),
+      });
 
-    const data = await schema.validate(req.body);
+      const data = await schema.validate(req.body);
 
-    const cars = await Posts.find({ seller: req.user._id });
-    if (cars.length >= 7) {
-      return res.status(400).render("errors/404");
-    }
+      const cars = await Posts.find({ seller: req.user._id });
+      if (cars.length >= 7) {
+        return res.status(400).render("errors/404");
+      }
 
-    await Posts.create({ ...data, seller: req.user._id });
-    res.redirect("/posts");
+      await Posts.create({ ...data, seller: req.user._id });
+      res.redirect("/posts");
     } catch (error) {
-      return res.status(404).render("errors/404");
+      return res.status(400).render("posts/create");
     }
   }
   /**
@@ -55,7 +55,7 @@ class PostsController {
       }
       res.render("posts/show", { post });
     } catch (error) {
-      return res.status(404).render("errors/404");
+      return res.status(400).render("errors/404");
     }
   }
   /**
@@ -95,7 +95,7 @@ class PostsController {
       const user = await Users.findById(req.session.passport.user);
 
       if (!post || !user) {
-        return res.status(404).render("errors/404");
+        return res.status(400).render("errors/404");
       }
 
       if (post.seller.toString() == user._id.toString()) {

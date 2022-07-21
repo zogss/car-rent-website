@@ -1,53 +1,29 @@
-<nav class="navbar navbar-expand-lg bg-dark">
+<nav class="navbar navbar-expand-lg bg-dark p-0">
   <div class="container-fluid">
-    <a class="navbar-brand text-white" href="#">
-      Navbar
-    </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="text-white text-opacity-75 nav-link" href="/posts">
-            Home
-          </a>
-        </li>
-      </ul>
+    <div class="flex-grow home" id="navbarSupportedContent">
+      <a class="text-white text-opacity-75 nav-link p-3 fs-5" href="/posts">
+        Home
+      </a>
     </div>
-    <div class="user-options">
-      <a
-        class="nav-link dropdown-toggle d-flex align-items-center"
-        href="#"
-        id="navbarDropdownMenuLink"
-        role="button"
-        data-mdb-toggle="dropdown"
-        aria-expanded="false"
-      >
+
+    <div class="align-items-center justify-items-center gap-3">
+      <form action="/logout" method="post" class="float-end ms-2">
+        <button class="btn btn-primary">LogOut</button>
+      </form>
+      <a href="#" role="button">
         <img
-          src="https://mdbootstrap.com/img/Photos/Avatars/img%20(9).jpg"
+          src="https://img.favpng.com/7/19/18/computer-icons-user-profile-avatar-png-favpng-t9dbNV4fubzn8GQ5jzFCGpycJ_t.jpg"
           class="rounded-circle"
-          height="30"
+          height="38"
           alt=""
           loading="lazy"
         />
       </a>
-      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+      <!--<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         <li><a class="dropdown-item" href="#">My profile</a></li>
         <li><a class="dropdown-item" href="#">Settings</a></li>
         <li><a class="dropdown-item" href="#">Logout</a></li>
-      </ul>
+      </ul>-->
     </div>
-    <form action="/logout" method="post">
-      <button class="btn btn-primary">LogOut</button>
-    </form>
   </div>
 </nav>
