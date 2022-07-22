@@ -38,7 +38,7 @@
               </div>
 
               <div
-                class="form-outline form-white mb-4 text-start fw-semibold fs-5"
+                class="form-outline form-white text-start fw-semibold fs-5"
               >
                 <label class="form-label" for="password">Password:</label>
                 <input
@@ -54,9 +54,13 @@
                 <div class="invalid-feedback">
                   Por favor, preencha a senha!
                 </div>
+              </div>  
+
+              <div class="my-2">
+                {{> auth_msg}}
               </div>
 
-              <p class="mb-4 pb-lg-2"><a class="text-white-50" href="#!">Forgot
+              <p class="my-4 pb-lg-2"><a class="text-white-50" href="#!">Forgot
                   password?</a></p>
 
               <button

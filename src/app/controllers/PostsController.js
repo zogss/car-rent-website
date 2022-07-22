@@ -1,4 +1,3 @@
-import * as Yup from "yup";
 import Posts from "../models/Posts";
 import Users from "../models/Users";
 import schema from "../schemas/postSchema";
@@ -10,10 +9,9 @@ class PostsController {
   async store(req, res) {
     // armazenar dados do model no banco de dados
     try {
-      const data = await schema.validate(req.body);
       const cars = await Posts.find({ seller: req.user._id });
 
-      let errors = [];
+      const errors = [];
 
       if (
         !req.body.title ||
@@ -70,6 +68,7 @@ class PostsController {
       if (errors.length > 0) {
         res.render("posts/create", { errors: errors });
       } else {
+        const data = await schema.validate(req.body);
         await Posts.create({ ...data, seller: req.user._id });
         req.flash("success_message", "Post criado com sucesso!");
         res.redirect("/posts");
@@ -96,10 +95,18 @@ class PostsController {
     // mostrar um model no banco de dados
     try {
       const post = await Posts.findById(req.params.id).populate("seller");
+      const postId = await Posts.findById(req.params.id);
+      const user = await Users.findById(req.session.passport.user);
+
       if (!post) {
         return res.status(404).render("errors/404");
       }
+      if (postId.seller.toString() !== user._id.toString()) {
+        const buttonDisable = "disabled";
+        res.render("posts/show", { post, buttonDisable });
+      }else{      
       res.render("posts/show", { post });
+      }
     } catch (error) {
       return res.status(404).render("errors/404");
     }
@@ -170,7 +177,7 @@ class PostsController {
       } else {
         await post.updateOne(data);
         req.flash("success_message", "Post editado com sucesso!");
-        res.redirect("/posts")
+        res.redirect("/posts");
       }
     } catch (error) {
       req.flash("error_message", "Erro ao editar o post, tente novamente!");
@@ -184,21 +191,19 @@ class PostsController {
   async destroy(req, res) {
     // deletar um model no banco de dados
     try {
-      const post = await Posts.findById(req.params.id);
-      const user = await Users.findById(req.session.passport.user);
+      const userPost = await Posts.findOne({ _id: req.params.id, seller: req.user._id});
 
-      if (!post || !user) {
-        return res.status(400).render("errors/404");
-      }
-
-      if (post.seller.toString() == user._id.toString()) {
-        await post.remove();
+      if (userPost) {
+        await userPost.remove();
+        req.flash("success_message", "Post removido com sucesso!");
         res.redirect("/posts");
       } else {
-        return res.status(404).render("errors/404");
+        req.flash("error_message", "Erro ao remover o post, tente novamente!");
+        res.redirect("/posts");
       }
     } catch (err) {
-      return res.status(404).render("errors/404");
+      req.flash("error_message", "Erro ao remover o post, tente novamente!");
+      res.redirect("/posts");
     }
   }
   /**

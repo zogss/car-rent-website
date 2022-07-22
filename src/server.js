@@ -1,6 +1,5 @@
 import app from "./start/kernel/app";
 
+const port = process.env.PORT || 3333;
 
-const server = app.app.listen(process.env.PORT || 3333, () => {
-  console.log("Express server listening on port %d", server.address().port);
-});
+app.app.listen(port, () => console.log(`Express server listening on port ${port}`));

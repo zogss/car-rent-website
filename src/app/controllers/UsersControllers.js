@@ -1,5 +1,5 @@
 import Users from "../models/Users";
-import * as Yup from "yup";
+import schema from "../schemas/userSchema"
 
 class UsersController {
   /**
@@ -9,25 +9,24 @@ class UsersController {
   async store(req, res) {
     // armazenar dados do model no banco de dados
     try {
-      const schema = Yup.object().shape({
-        name: Yup.string().required(),
-        email: Yup.string().required().email(),
-        password: Yup.string().required().min(8),
-        password_confirmation: Yup.string()
-          .required()
-          .min(8)
-          .oneOf([Yup.ref("password"), null]),
-      });
-      const data = await schema.validate(req.body);
-      const user = await Users.create(data);
-      req.login(user, (err) => {
+      if (req.body.password !== req.body.password_confirmation){
+        console.log("bunda")
+        req.flash("error_message", "As senhas não batem!");
+        res.redirect("/register")
+      }else{
+        const data = await schema.validate(req.body);
+        const user = await Users.create(data);
+        req.login(user, (err) => {
         if (err) {
-          return res.redirect("/register");
+          req.flash("error_message", "Erro inesperado ao registrar, tente novamente!");
+          res.redirect("/register");
         }
-        return res.redirect("/");
+        res.redirect("/");
       });
+      }
     } catch (error) {
-      return res.redirect("/register");
+      req.flash("error_message", "Erro inesperado ao registrar, tente novamente!");
+      res.redirect("/register");
     }
   }
   /**

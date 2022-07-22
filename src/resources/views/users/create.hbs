@@ -76,10 +76,10 @@
               <div
                 class="form-outline form-white mb-4 text-start fw-semibold fs-5"
               >
-                <label class="form-label" for="password">Password confirmation:</label>
+                <label class="form-label" for="password_confirmation">Password confirmation:</label>
                 <input
                   type="password"
-                  id="password"
+                  id="password_confirmation"
                   name="password_confirmation"
                   placeholder="Password confirmation"
                   class="form-control form-control-lg"
@@ -91,6 +91,8 @@
                   Por favor, confirme a senha!
                 </div>
               </div>
+
+              {{> auth_msg}}
 
               <button
                 class="btn btn-outline-light btn-lg px-5 mt-3"

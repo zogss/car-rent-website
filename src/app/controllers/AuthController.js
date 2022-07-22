@@ -8,9 +8,9 @@ class AuthController {
    */
   async index(req, res) {
     if (req.isAuthenticated()) {
-      res.redirect("/");
+      return res.redirect("/");
     }
-    res.render("auth/login", { layout: "auth" });
+    return res.render("auth/login", { layout: "auth" });
   }
   /**
    *
@@ -22,9 +22,11 @@ class AuthController {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
+      req.flash("error_message", "Usuário não encontrado!");
       return res.status(401).redirect("/login");
     }
     if (!(await user.comparePassword(password))) {
+      req.flash("error_message", "Senha inválida!");
       return res.status(401).redirect("/login");
     }
     req.login(user, (err) => {
@@ -44,7 +46,7 @@ class AuthController {
       if (err) {
         return next(err);
       }
-      res.redirect("/login");
+      return res.redirect("/login");
     });
   }
 }
