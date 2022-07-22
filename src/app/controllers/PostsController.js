@@ -10,17 +10,6 @@ class PostsController {
   async store(req, res) {
     // armazenar dados do model no banco de dados
     try {
-      const schema = Yup.object().shape({
-        title: Yup.string().required(),
-        model: Yup.string().required(),
-        brand: Yup.string().required(),
-        year: Yup.number().required(),
-        valuePerDay: Yup.string().required(),
-        plate: Yup.string().required(),
-        size: Yup.string().required(),
-        maxSpeed: Yup.number().required(),
-      });
-
       const data = await schema.validate(req.body);
       const cars = await Posts.find({ seller: req.user._id });
 
@@ -123,6 +112,7 @@ class PostsController {
     // atualizar um model no banco de dados
     try {
       const post = await Posts.findById(req.params.id);
+      const data = await schema.validate(req.body);
 
       let errors = [];
 
