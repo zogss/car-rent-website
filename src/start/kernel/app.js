@@ -13,7 +13,7 @@ import session from "express-session";
 import sessionConfig from "../../config/session";
 import passport from "passport";
 import PassportProvider from "../../providers/PassportProvider";
-
+import flash from "connect-flash";
 
 class App {
   viewsPath = path.resolve(__dirname, "..", "..", "resources", "views");
@@ -43,6 +43,12 @@ class App {
     this.app.use(passport.authenticate("session"));
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(methodOverride("_method"));
+    this.app.use(flash());
+    this.app.use((req, res, next) => {
+      res.locals.error_message = req.flash("error_message");
+      res.locals.success_message = req.flash("success_message");
+      next();
+    });
   }
   routes() {
     // all routes here
