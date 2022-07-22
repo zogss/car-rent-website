@@ -5,20 +5,26 @@
         Home
       </a>
     </div>
-
-    <div class="align-items-center justify-items-center gap-3">
-      <form action="/logout" method="post" class="float-end ms-2">
-        <button class="btn btn-primary">LogOut</button>
-      </form>
-      <a href="#" role="button">
-        <img
-          src="https://img.favpng.com/7/19/18/computer-icons-user-profile-avatar-png-favpng-t9dbNV4fubzn8GQ5jzFCGpycJ_t.jpg"
-          class="rounded-circle"
-          height="38"
-          alt=""
-          loading="lazy"
-        />
+    <div class="align-items-center justify-items-center gap-3 d-flex">
+      <a href="#" class="text-decoration-none" role="button">
+        <div class="d-flex align-items-center">
+          <img
+            src="https://www.gravatar.com/avatar/{{md5 user.email}}?s=80&d=robohash"
+            class="rounded-circle"
+            height="38"
+            alt=""
+            loading="lazy"
+          />
+                    <p class="text-light m-0">
+            {{user.name}}
+          </p>
+        </div>
       </a>
+      <form action="/logout" method="post" class="float-end ms-1">
+        <button class="btn btn-primary">
+          LogOut
+        </button>
+      </form>
       <!--<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         <li><a class="dropdown-item" href="#">My profile</a></li>
         <li><a class="dropdown-item" href="#">Settings</a></li>
