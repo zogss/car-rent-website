@@ -10,10 +10,10 @@
     </a>
   </div>
 </div>
-<ul class="d-flex flex-wrap my-5 gap-3">
+<ul class="d-flex flex-wrap my-5 p-0 mw-100 w-100">
   {{#each posts as |post|}}
-    <li class="list-group-item shadow bg-body">
-      <div class="card" style="width: 18rem;">
+    <li class="d-flex list-group-item bg-body col-12 col-md-6 col-lg-6 col-xl-4 justify-content-center p-2">
+      <div class="card w-100 shadow">
         <a href="/posts/{{post._id}}" class="text-decoration-none bg-dark bg-opacity-75 rounded-2">
           <img src="..." class="card-img-top" alt="..." />
           <div class="card-body border-top border-light border-opacity-25 text-light">
