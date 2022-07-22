@@ -118,10 +118,12 @@
         <div class="my-1 col-4">
           <label class="form-label" for="valuePerDay">Valor diário:</label>
           <input
-            type="number"
+            type="text"
             class="form-control"
             name="valuePerDay"
+            maxlength="10"
             id="valuePerDay"
+            onkeyup="formatarMoeda()"
             placeholder="Ex: 2.000,00"
             required
           />

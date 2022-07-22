@@ -90,7 +90,9 @@
             type="text"
             class="form-control"
             name="valuePerDay"
+            maxlength="10"
             id="valuePerDay"
+            onkeyup="formatarMoeda()"
             placeholder="Ex: 2.000,00"
             value="{{post.valuePerDay}}"
           />
