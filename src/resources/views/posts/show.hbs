@@ -77,11 +77,9 @@
 
   {{#if buttonDisable}}
     <div class="d-flex justify-content-center align-items-center gap-4 mt-5">
-      <form action="/posts/{{post._id}}/rent" method="POST">
-        <button type="submit" class="btn btn-primary">
-          Alugar
-        </button>
-      </form>
+      <a href="/posts/{{post._id}}/rent" class="btn btn-primary">
+        Alugar
+      </a>
     </div>
   {{else}}
     <div class="d-flex justify-content-center align-items-center gap-4 mt-5">

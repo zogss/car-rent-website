@@ -104,8 +104,8 @@ class PostsController {
       if (postId.seller.toString() !== user._id.toString()) {
         const buttonDisable = "disabled";
         res.render("posts/show", { post, buttonDisable });
-      }else{      
-      res.render("posts/show", { post });
+      } else {
+        res.render("posts/show", { post });
       }
     } catch (error) {
       return res.status(404).render("errors/404");
@@ -191,7 +191,10 @@ class PostsController {
   async destroy(req, res) {
     // deletar um model no banco de dados
     try {
-      const userPost = await Posts.findOne({ _id: req.params.id, seller: req.user._id});
+      const userPost = await Posts.findOne({
+        _id: req.params.id,
+        seller: req.user._id,
+      });
 
       if (userPost) {
         await userPost.remove();
@@ -235,6 +238,13 @@ class PostsController {
     } catch (err) {
       return res.status(400).render("errors/404");
     }
+  }
+  /**
+   * @param {import('express').Request} req
+   * @param {import('express').Response} res
+   */
+  async pay(req, res) {
+    res.render("posts/payment");
   }
 }
 
