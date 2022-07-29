@@ -26,7 +26,7 @@ class AuthController {
       return res.status(401).redirect("/login");
     }
     if (!(await user.comparePassword(password))) {
-      req.flash("error_message", "Senha inválida!");
+      req.flash("error_message", "Senha incorreta!");
       return res.status(401).redirect("/login");
     }
     req.login(user, (err) => {

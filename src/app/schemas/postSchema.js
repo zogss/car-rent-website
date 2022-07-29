@@ -9,6 +9,9 @@ const schema = Yup.object().shape({
   plate: Yup.string().required(),
   size: Yup.string().required(),
   maxSpeed: Yup.number().required(),
+  fileName: Yup.string(),
+  fileSize: Yup.number(),
+  key: Yup.string(),
 });
 
 export default schema;

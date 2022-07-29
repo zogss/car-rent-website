@@ -4,6 +4,7 @@ import api from "../routes/api";
 import MongoProvider from "../../providers/MongoProvider";
 import { engine } from "express-handlebars";
 import path from "path";
+import morgan from "morgan";
 import { allowInsecurePrototypeAccess } from "@handlebars/allow-prototype-access";
 import viewHelpers from "./view-helpers";
 import Handlebars from "handlebars";
@@ -18,6 +19,7 @@ import flash from "connect-flash";
 class App {
   viewsPath = path.resolve(__dirname, "..", "..", "resources", "views");
   publicPath = path.resolve(__dirname, "..", "..", "public");
+  filesPath = path.resolve(__dirname, "..", "..", "..", "tmp", "uploads");
 
   constructor() {
     this.app = express();
@@ -36,6 +38,7 @@ class App {
       })
     );
     this.app.use("/public", express.static(this.publicPath));
+    this.app.use("/files", express.static(this.filesPath));
     this.app.set("view engine", "hbs");
     this.app.set("views", this.viewsPath);
     this.app.use(cookieParser());
@@ -43,11 +46,12 @@ class App {
     this.app.use(passport.authenticate("session"));
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(methodOverride("_method"));
+    this.app.use(morgan("dev"));
     this.app.use(flash());
     this.app.use((req, res, next) => {
       res.locals.error_message = req.flash("error_message");
       res.locals.success_message = req.flash("success_message");
-      res.locals.user = req.user;
+      res.locals.user = req.user || null;
       next();
     });
   }

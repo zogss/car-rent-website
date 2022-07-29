@@ -1,5 +1,5 @@
 import Users from "../models/Users";
-import schema from "../schemas/userSchema"
+import schema from "../schemas/userSchema";
 
 class UsersController {
   /**
@@ -9,24 +9,63 @@ class UsersController {
   async store(req, res) {
     // armazenar dados do model no banco de dados
     try {
-      if (req.body.password !== req.body.password_confirmation){
-        console.log("bunda")
-        req.flash("error_message", "As senhas não batem!");
-        res.redirect("/register")
-      }else{
-        const data = await schema.validate(req.body);
-        const user = await Users.create(data);
-        req.login(user, (err) => {
-        if (err) {
-          req.flash("error_message", "Erro inesperado ao registrar, tente novamente!");
-          res.redirect("/register");
+      const errors = [];
+
+      if (
+        !req.body.name ||
+        typeof req.body.name == undefined ||
+        req.body.name == null
+      ) {
+        errors.push({ text: "Nome inválido!" });
+      }
+      if (
+        !req.body.email ||
+        typeof req.body.email == undefined ||
+        req.body.email == null
+      ) {
+        errors.push({ text: "E-mail inválido!" });
+      }
+      if (
+        !req.body.password ||
+        typeof req.body.password == undefined ||
+        req.body.password == null
+      ) {
+        errors.push({ text: "Senha inválida!" });
+      }
+      if (req.body.password.length < 8) {
+        errors.push({ text: "A senha deve conter no mínimo 8 caracteres!" });
+      }
+      if (req.body.password !== req.body.password_confirmation) {
+        errors.push({ text: "As senhas são diferentes, tente novamente!" });
+      }
+      if (errors.lenght > 0) {
+        return res.render("users/create", { errors: errors });
+      } else {
+        const user = await Users.findOne({ email: req.body.email })
+        if(user){
+          req.flash("error_message", "Já existe um usuário registrado com este e-mail!")
+          return res.redirect("/register")
+        }else{
+          const data = await schema.validate(req.body);
+          const userCreation = await Users.create(data);
+          req.login(userCreation, (err) => {
+            if (err) {
+              req.flash(
+                "error_message",
+                "Erro inesperado ao criar o usuário, tente novamente!"
+              );
+              return res.redirect("/register");
+            }
+            return res.redirect("/");
+          });
         }
-        res.redirect("/");
-      });
       }
     } catch (error) {
-      req.flash("error_message", "Erro inesperado ao registrar, tente novamente!");
-      res.redirect("/register");
+      req.flash(
+        "error_message",
+        "Erro inesperado ao criar o usuário, tente novamente!"
+      );
+      return res.redirect("/");
     }
   }
   /**

@@ -8,23 +8,29 @@
     method="post"
     novalidate
   >
-    <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="card bg-dark text-white" style="border-radius: 1rem;">
-          <div class="card-body text-center p-5 pt-5">
+        <div class="card bg-dark text-white">
+          <div class="card-body text-center p-5 d-flex flex-column gap-4">
+            <div>
+              <h2 class="fw-semibold text-uppercase m-0">Registration</h2>
+              <p class="text-white-50 m-0">Create your account here!</p>
+            </div>
+            {{#each errors}}
+              <div class="alert alert-danger m-0">{{text}}</div>
+            {{else}}
 
-            <div class="mb-md-5 mt-md-4 mb-5">
+            {{/each}}
 
-              <h2 class="fw-bold mb-2 text-uppercase">Registration</h2>
-              <p class="text-white-50 mb-5">Create your account here!</p>
-
+            {{> auth_msg}}
+            <div class="d-grid gap-4">
               <div
-                class="form-outline form-white mb-4 text-start fw-semibold fs-5"
+                class="form-outline form-white text-start fw-semibold fs-5"
               >
                 <label class="form-label" for="name">Name:</label>
                 <input
                   type="text"
-                  class="form-control form-control-lg"
+                  class="form-control"
                   id="name"
                   name="name"
                   placeholder="Name"
@@ -37,12 +43,12 @@
               </div>
 
               <div
-                class="form-outline form-white mb-4 text-start fw-semibold fs-5"
+                class="form-outline form-white text-start fw-semibold fs-5"
               >
                 <label class="form-label" for="email">Email:</label>
                 <input
                   type="email"
-                  class="form-control form-control-lg"
+                  class="form-control"
                   id="email"
                   name="email"
                   placeholder="email@email.com"
@@ -55,7 +61,7 @@
               </div>
 
               <div
-                class="form-outline form-white mb-4 text-start fw-semibold fs-5"
+                class="form-outline form-white text-start fw-semibold fs-5"
               >
                 <label class="form-label" for="password">Password:</label>
                 <input
@@ -63,7 +69,7 @@
                   id="password"
                   name="password"
                   placeholder="Password"
-                  class="form-control form-control-lg"
+                  class="form-control"
                   aria-describedby="inputGroupPrepend"
                   minlength="8"
                   required
@@ -74,15 +80,16 @@
               </div>
 
               <div
-                class="form-outline form-white mb-4 text-start fw-semibold fs-5"
+                class="form-outline form-white text-start fw-semibold fs-5"
               >
-                <label class="form-label" for="password_confirmation">Password confirmation:</label>
+                <label class="form-label" for="password_confirmation">Password
+                  confirmation:</label>
                 <input
                   type="password"
                   id="password_confirmation"
                   name="password_confirmation"
                   placeholder="Password confirmation"
-                  class="form-control form-control-lg"
+                  class="form-control"
                   aria-describedby="inputGroupPrepend"
                   minlength="8"
                   required
@@ -91,18 +98,15 @@
                   Por favor, confirme a senha!
                 </div>
               </div>
-
-              {{> auth_msg}}
-
+            </div>
+            <div class="my-2">
               <button
-                class="btn btn-outline-light btn-lg px-5 mt-3"
+                class="btn btn-outline-light px-5 fs-5"
                 type="submit"
               >Register</button>
-
             </div>
-
             <div>
-              <p class="mb-0">Alreary have an account?
+              <p class="m-0">Alreary have an account?
                 <a href="/login" class="text-white-50 fw-bold">Sign In</a>
               </p>
             </div>

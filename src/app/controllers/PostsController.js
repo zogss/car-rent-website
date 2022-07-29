@@ -7,9 +7,15 @@ class PostsController {
    * @param {import('express').Response} res
    */
   async store(req, res) {
-    // armazenar dados do model no banco de dados
+    //* armazenar dados do model no banco de dados
     try {
       const cars = await Posts.find({ seller: req.user._id });
+      const {
+        originalname: fileName,
+        size: fileSize,
+        key: key,
+        location: url = "",
+      } = req.file;
 
       const errors = [];
 
@@ -66,16 +72,22 @@ class PostsController {
         errors.push({ text: "Número máximo de posts atingido" });
       }
       if (errors.length > 0) {
-        res.render("posts/create", { errors: errors });
+        return res.render("posts/create", { errors: errors });
       } else {
-        const data = await schema.validate(req.body);
+        const data = await schema.validate({
+          ...req.body,
+          fileName,
+          fileSize,
+          key,
+          url,
+        });
         await Posts.create({ ...data, seller: req.user._id });
         req.flash("success_message", "Post criado com sucesso!");
-        res.redirect("/posts");
+        return res.redirect("/posts");
       }
     } catch (error) {
       req.flash("error_message", "Erro ao criar o post, tente novamente!");
-      res.redirect("/posts");
+      return res.redirect("/posts");
     }
   }
   /**
@@ -83,9 +95,9 @@ class PostsController {
    * @param {import('express').Response} res
    */
   async index(req, res) {
-    // listagem dos models no banco de dados
+    //* listagem dos models no banco de dados
     const posts = await Posts.find();
-    res.render("posts/index", { posts });
+    return res.render("posts/index", { posts });
   }
   /**
    * @param {import('express').Request} req
@@ -105,7 +117,7 @@ class PostsController {
         const buttonDisable = "disabled";
         res.render("posts/show", { post, buttonDisable });
       } else {
-        res.render("posts/show", { post });
+        return res.render("posts/show", { post });
       }
     } catch (error) {
       return res.status(404).render("errors/404");
@@ -116,10 +128,9 @@ class PostsController {
    * @param {import('express').Response} res
    */
   async update(req, res) {
-    // atualizar um model no banco de dados
+    //* atualizar um model no banco de dados
     try {
       const post = await Posts.findById(req.params.id);
-      const data = await schema.validate(req.body);
 
       let errors = [];
 
@@ -175,13 +186,34 @@ class PostsController {
       if (errors.length > 0) {
         res.render("posts/create", { errors: errors });
       } else {
-        await post.updateOne(data);
-        req.flash("success_message", "Post editado com sucesso!");
-        res.redirect("/posts");
+        if (req.file) {
+          const {
+            originalname: fileName,
+            size: fileSize,
+            key: key,
+            location: url = "",
+          } = req.file;
+
+          const data = await schema.validate({
+            ...req.body,
+            fileName,
+            fileSize,
+            key,
+            url,
+          });
+          await post.updateOne(data);
+          req.flash("success_message", "Post editado com sucesso!");
+          return res.redirect("/posts");
+        } else {
+          const data = await schema.validate(req.body);
+          await post.updateOne(data);
+          req.flash("success_message", "Post editado com sucesso!");
+          return res.redirect("/posts");
+        }
       }
     } catch (error) {
       req.flash("error_message", "Erro ao editar o post, tente novamente!");
-      res.redirect("/posts");
+      return res.redirect("/posts");
     }
   }
   /**
@@ -189,7 +221,7 @@ class PostsController {
    * @param {import('express').Response} res
    */
   async destroy(req, res) {
-    // deletar um model no banco de dados
+    //* deletar um model no banco de dados
     try {
       const userPost = await Posts.findOne({
         _id: req.params.id,
@@ -199,14 +231,14 @@ class PostsController {
       if (userPost) {
         await userPost.remove();
         req.flash("success_message", "Post removido com sucesso!");
-        res.redirect("/posts");
+        return res.redirect("/posts");
       } else {
         req.flash("error_message", "Erro ao remover o post, tente novamente!");
-        res.redirect("/posts");
+        return res.redirect("/posts");
       }
     } catch (err) {
       req.flash("error_message", "Erro ao remover o post, tente novamente!");
-      res.redirect("/posts");
+      return res.redirect("/posts");
     }
   }
   /**
@@ -222,7 +254,7 @@ class PostsController {
    * @param {import('express').Response} res
    */
   async edit(req, res) {
-    // exibir a tela de edição do model para o usuário
+    //* exibir a tela de edição do model para o usuário
     try {
       const post = await Posts.findById(req.params.id);
       const user = await Users.findById(req.session.passport.user);
@@ -231,20 +263,13 @@ class PostsController {
         return res.status(404).render("errors/404");
       }
       if (post.seller.toString() == user._id.toString()) {
-        res.render("posts/edit", { post });
+        return res.render("posts/edit", { post });
       } else {
         return res.status(404).render("errors/404");
       }
     } catch (err) {
       return res.status(400).render("errors/404");
     }
-  }
-  /**
-   * @param {import('express').Request} req
-   * @param {import('express').Response} res
-   */
-  async pay(req, res) {
-    res.render("posts/payment");
   }
 }
 

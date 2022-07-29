@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="h-100">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{title}}</title>
-  <link rel="stylesheet" href="/public/css/app.css">
+  <link rel="stylesheet" href="/public/css/app.css">  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
   <style>
     .action .menu {
@@ -33,9 +33,9 @@
     }
   </style>
 </head>
-<body class="h-100 d-flex flex-column">
+<body class="min-vh-100 d-flex flex-column">
   {{> navbar}}
-  <div class="container flex-shrink-0">
+  <div class="container my-auto">
     {{> main_msg}}
     {{{body}}}
   </div>
