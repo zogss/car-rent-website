@@ -17,6 +17,7 @@ import PassportProvider from "../../providers/PassportProvider";
 import flash from "connect-flash";
 
 class App {
+  //* short paths here
   viewsPath = path.resolve(__dirname, "..", "..", "resources", "views");
   publicPath = path.resolve(__dirname, "..", "..", "public");
   filesPath = path.resolve(__dirname, "..", "..", "..", "tmp", "uploads");
@@ -28,7 +29,7 @@ class App {
     this.registerProviders();
   }
   middlewares() {
-    // all middlewares stay here
+    //* all middlewares stay here
     this.app.engine(
       "hbs",
       engine({
@@ -56,12 +57,12 @@ class App {
     });
   }
   routes() {
-    // all routes here
+    //* all routes here
     this.app.use("/", web);
     this.app.use("/api", api);
   }
   registerProviders() {
-    // mongo boot
+    //* mongo boot
     MongoProvider.boot();
     PassportProvider.boot();
   }

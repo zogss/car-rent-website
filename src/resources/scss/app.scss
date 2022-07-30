@@ -1,0 +1,28 @@
+@import "sweetalert2/dist/sweetalert2";
+@import "bootstrap-icons/font/bootstrap-icons";
+@import "bootstrap/dist/css/bootstrap";
+
+
+.action .menu {
+  top: 55px;
+  z-index: 1000;
+  width: 290px;
+  right: 18px;
+  transition: 0.5s;
+}
+
+.action .menu.active {
+  top: 70px !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.action .menu ul li {
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.action .menu ul li:hover {
+  background-color: rgb(175, 175, 175);
+}
