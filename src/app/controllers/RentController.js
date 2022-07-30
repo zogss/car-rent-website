@@ -18,7 +18,7 @@ class RentController {
       return: false,
     });
 
-    return res.redirect("/posts");
+    return res.redirect("/rentals");
   }
   /**
    * @param {import('express').Request} req
