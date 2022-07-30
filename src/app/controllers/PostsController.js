@@ -1,6 +1,8 @@
 import Posts from "../models/Posts";
+import Rent from "../models/Rent";
 import Users from "../models/Users";
 import schema from "../schemas/postSchema";
+
 class PostsController {
   /**
    * @param {import('express').Request} req
@@ -104,21 +106,21 @@ class PostsController {
    * @param {import('express').Response} res
    */
   async show(req, res) {
-    // mostrar um model no banco de dados
+    //* mostrar um model no banco de dados
     try {
       const post = await Posts.findById(req.params.id).populate("seller");
-      const postId = await Posts.findById(req.params.id);
       const user = await Users.findById(req.session.passport.user);
 
       if (!post) {
         return res.status(404).render("errors/404");
       }
-      if (postId.seller.toString() !== user._id.toString()) {
-        const buttonDisable = "disabled";
-        res.render("posts/show", { post, buttonDisable });
-      } else {
-        return res.render("posts/show", { post });
-      }
+
+      //* validação de aluguel
+      const rentedCar = await Rent.find({ cars: post });
+      const isNotOwner = post.seller.id.toString() !== user._id.toString();
+
+      //* Renderização da tela passando a validação de aluguel
+      return res.render("posts/show", { post, isNotOwner, rentedCar });
     } catch (error) {
       return res.status(404).render("errors/404");
     }

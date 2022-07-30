@@ -4,6 +4,7 @@
 
 {{/each}}
 <div
+  x-data
   class="container my-5 p-5 card bg-dark text-white"
   style="border-radius: 1rem;"
 >
@@ -121,9 +122,8 @@
             type="text"
             class="form-control"
             name="valuePerDay"
-            maxlength="10"
             id="valuePerDay"
-            onkeyup="formatarMoeda()"
+            x-mask:dynamic="$money($input, ',')"
             placeholder="Ex: 2.000,00"
             required
           />

@@ -2,11 +2,13 @@ import { Router } from "express";
 import AuthController from "../../app/controllers/AuthController";
 import PostsController from "../../app/controllers/PostsController";
 import UsersController from "../../app/controllers/UsersControllers";
+import RentController from "../../app/controllers/RentController";
 import auth from "../../app/middlewares/auth";
 import upload from "../../config/multer";
 
 const routes = Router();
 
+//* Initial route
 routes.get("/", (req, res) => {
   res.redirect("/posts");
 });
@@ -24,6 +26,12 @@ routes.put(
   PostsController.update
 );
 routes.delete("/posts/:id", auth, PostsController.destroy);
+
+//* Rent
+routes.get("/rentals", auth, RentController.index)
+routes.get("/posts/rent/create/:id", auth, RentController.create);
+routes.post("/posts/rent/:id", auth, RentController.store)
+routes.delete("/rentals/:id", auth, RentController.destroy)
 
 //* Users
 routes.get("/login", AuthController.index);
