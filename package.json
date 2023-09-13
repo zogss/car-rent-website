@@ -2,10 +2,13 @@
   "name": "car-rent-website",
   "version": "1.0.0",
   "description": "a website to renting cars",
-  "main": "index.js",
+  "main": "server.js",
   "author": "yan lucas",
   "license": "MIT",
   "private": true,
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "dev": "nodemon src/server.js",
     "build": "sucrase ./src -d ./dist --transforms imports",
