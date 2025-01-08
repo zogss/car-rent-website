@@ -1,10 +1,8 @@
-import mongoose from "mongoose";
-import aws from "aws-sdk";
-import fs from "fs";
-import path from "path";
-import { promisify } from "util";
-
-const s3 = new aws.S3();
+import mongoose from 'mongoose';
+import fs from 'fs';
+import path from 'path';
+import { promisify } from 'util';
+import { S3Client } from '@aws-sdk/client-s3';
 
 const PostSchema = new mongoose.Schema(
   {
@@ -49,7 +47,7 @@ const PostSchema = new mongoose.Schema(
     },
     seller: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
       required: true,
     },
     fileName: { type: String, required: true },
@@ -59,42 +57,40 @@ const PostSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
-PostSchema.pre("save", () => {
+PostSchema.pre('save', function () {
   if (!this.url) {
     this.url = `${process.env.APP_URL}/files/${this.key}`;
   }
 });
 
-PostSchema.pre("updateOne", () => {
-  if (!this.url) {
-    this.url = `${process.env.APP_URL}/files/${this.key}`;
+PostSchema.pre('updateOne', function () {
+  const update = this.getUpdate();
+  if (!update.url && update.key) {
+    update.url = `${process.env.APP_URL}/files/${update.key}`;
   }
 });
 
-PostSchema.pre("remove", () => {
+PostSchema.pre('remove', async function () {
   try {
-    if (process.env.STORAGE_TYPE === "s3") {
-      return s3
-        .deleteObject({
-          Bucket: process.env.BUCKET_NAME,
-          Key: this.key,
-        })
-        .promise()
-        .then((response) => {
-          console.log(response.status);
-        })
-        .catch((response) => {
-          console.log(response.status);
-        });
+    if (process.env.STORAGE_TYPE === 's3') {
+      const { DeleteObjectCommand } = await import('@aws-sdk/client-s3');
+      const s3Client = new S3Client({ region: process.env.AWS_REGION });
+      const command = new DeleteObjectCommand({
+        Bucket: process.env.AWS_BUCKET_NAME || '',
+        Key: this.key,
+      });
+      await s3Client.send(command);
     } else {
       return promisify(fs.unlink)(
-        path.resolve(__dirname, "..", "..", "..", "tmp", "uploads", this.key)
+        path.resolve(__dirname, '..', '..', '..', 'tmp', 'uploads', this.key),
       );
     }
-  } catch (error) {}
+  } catch (error) {
+    return Promise.reject(error);
+  }
 });
 
-export default mongoose.model("Posts", PostSchema);
+export default mongoose.model('Posts', PostSchema);

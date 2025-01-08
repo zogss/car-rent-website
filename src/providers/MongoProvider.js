@@ -1,17 +1,22 @@
-import mongoose from "mongoose";
-import mongoConfig from "../config/mongo";
+import mongoose from 'mongoose';
+import mongoConfig from '../config/mongo';
 
 class MongoProvider {
+  mongoose;
+
   constructor() {
     this.mongoose = mongoose;
   }
   boot() {
-    this.connect(mongoConfig.uri);
+    if (mongoConfig.uri) {
+      this.mongoose.set('strictQuery', false);
+      this.connect(mongoConfig.uri);
+    }
   }
   connect(uri) {
     this.mongoose.connect(uri, {
       useNewUrlParser: true,
-      useunifiedTopology: true,
+      useUnifiedTopology: true,
     });
   }
 }
