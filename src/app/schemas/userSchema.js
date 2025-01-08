@@ -1,4 +1,4 @@
-import * as Yup from "yup";
+import * as Yup from 'yup';
 
 const schema = Yup.object().shape({
   name: Yup.string().required(),
@@ -8,7 +8,7 @@ const schema = Yup.object().shape({
   password_confirmation: Yup.string()
     .required()
     .min(8)
-    .oneOf([Yup.ref("password"), null]),
+    .oneOf([Yup.ref('password'), null]),
 });
 
 export default schema;

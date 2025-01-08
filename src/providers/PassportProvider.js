@@ -1,5 +1,5 @@
-import passport from "passport";
-import Users from "../app/models/Users";
+import passport from 'passport';
+import Users from '../app/models/Users';
 
 class PassportProvider {
   boot() {
@@ -10,7 +10,7 @@ class PassportProvider {
       try {
         const user = await Users.findById(id);
         if (!user) {
-          return done(new Error("User not found"));
+          return done(new Error('User not found'));
         }
         done(null, user);
       } catch (error) {

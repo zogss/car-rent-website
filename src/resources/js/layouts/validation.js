@@ -1,7 +1,7 @@
 const Validation = () => ({
   menuToggle() {
     const toggleMenu = this.$refs.menu;
-    toggleMenu.classList.toggle("active");
+    toggleMenu.classList.toggle('active');
   },
 });
 export default Validation;

@@ -1,15 +1,15 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const RentSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: "User",
+    ref: 'User',
   },
   cars: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: "Posts",
+    ref: 'Posts',
   },
   rentTime: {
     type: String,
@@ -28,4 +28,4 @@ const RentSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("Rent", RentSchema);
+export default mongoose.model('Rent', RentSchema);
