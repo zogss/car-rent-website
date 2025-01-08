@@ -1,2 +1,2 @@
-build: yarn build
-web: yarn start
+build: pnpm build:prod
+web: pnpm start
