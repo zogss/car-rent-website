@@ -14,10 +14,16 @@ class MongoProvider {
     }
   }
   connect(uri) {
-    this.mongoose.connect(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    this.mongoose.connect(
+      uri,
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      },
+      () => {
+        console.log('MongoDB connected!!');
+      },
+    );
   }
 }
 
