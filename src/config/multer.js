@@ -40,23 +40,13 @@ const storageType = {
   gcloud: multerGCS({
     projectId: process.env.GCLOUD_PROJECT || '',
     bucket: process.env.GSC_BUCKET_NAME || '',
-    keyFilename: path.resolve(
-      __dirname,
-      '..',
-      '..',
-      'tmp',
-      'keys',
-      `${process.env.GSC_KEYFILE_NAME}.json`,
-    ),
+    credentials: {
+      client_email: process.env.GSC_CLIENT_EMAIL || '',
+      private_key: process.env.GSC_PRIVATE_KEY || '',
+    },
     acl: 'publicRead',
     filename: (...[, file, cb]) => {
       let fileName = `${+new Date()}-${file.originalname}`;
-
-      crypto.randomBytes(16, (err, hash) => {
-        if (err) return cb(err);
-
-        fileName = `${hash.toString('hex')}-${file.originalname}`;
-      });
 
       cb(null, fileName);
     },

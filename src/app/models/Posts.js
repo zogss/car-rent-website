@@ -87,15 +87,10 @@ PostSchema.pre('remove', async function () {
     } else if (process.env.STORAGE_TYPE === 'gcloud') {
       const storage = new Storage({
         projectId: process.env.GCLOUD_PROJECT || '',
-        keyFilename: path.resolve(
-          __dirname,
-          '..',
-          '..',
-          '..',
-          'tmp',
-          'keys',
-          `${process.env.GSC_KEYFILE_NAME}.json`,
-        ),
+        credentials: {
+          client_email: process.env.GSC_CLIENT_EMAIL || '',
+          private_key: process.env.GSC_PRIVATE_KEY || '',
+        },
       });
       await storage.bucket(process.env.GSC_BUCKET_NAME).file(this.key).delete();
     } else {
