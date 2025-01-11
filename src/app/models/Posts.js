@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { promisify } from 'util';
 import { S3Client } from '@aws-sdk/client-s3';
+import { Storage } from '@google-cloud/storage';
 
 const PostSchema = new mongoose.Schema(
   {
@@ -83,6 +84,20 @@ PostSchema.pre('remove', async function () {
         Key: this.key,
       });
       await s3Client.send(command);
+    } else if (process.env.STORAGE_TYPE === 'gcloud') {
+      const storage = new Storage({
+        projectId: process.env.GCLOUD_PROJECT || '',
+        keyFilename: path.resolve(
+          __dirname,
+          '..',
+          '..',
+          '..',
+          'tmp',
+          'keys',
+          `${process.env.GSC_KEYFILE_NAME}.json`,
+        ),
+      });
+      await storage.bucket(process.env.GSC_BUCKET_NAME).file(this.key).delete();
     } else {
       return promisify(fs.unlink)(
         path.resolve(__dirname, '..', '..', '..', 'tmp', 'uploads', this.key),
