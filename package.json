@@ -20,11 +20,12 @@
     "postbuild": "copyfiles -u 1 src/{resources,public}/**/* dist/",
     "build:prod": "pnpm prebuild && pnpm build && pnpm postbuild",
     "mix:watch": "webpack --watch --progress --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "format": "prettier --write \"**/*.{js,json,css,md}\""
+    "format": "prettier --write \"**/*.{js,json,css,md,hbs}\""
   },
   "dependencies": {
     "@alpinejs/mask": "^3.14.8",
     "@aws-sdk/client-s3": "^3.723.0",
+    "@google-cloud/storage": "^7.15.0",
     "@handlebars/allow-prototype-access": "^1.0.5",
     "@popperjs/core": "^2.11.8",
     "alpinejs": "^3.14.8",
@@ -43,6 +44,7 @@
     "mongoose": "^6.13.5",
     "morgan": "^1.10.0",
     "multer": "1.4.5-lts.1",
+    "multer-cloud-storage": "^3.1.0",
     "multer-s3": "^2.10.0",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",

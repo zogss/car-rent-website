@@ -1,71 +1,73 @@
-<nav x-data="Navbar" class="navbar bg-dark p-0">
-  <ul class="container-fluid list-unstyled overflow-hidden m-0">
-    <li class="float-start">
+<nav x-data='Navbar' class='navbar bg-dark p-0'>
+  <ul class='container-fluid list-unstyled overflow-hidden m-0'>
+    <li class='float-start'>
       <a
-        class="btn btn-dark border-0 rounded-0 text-white fs-5 p-3"
-        href="/posts"
+        class='btn btn-dark border-0 rounded-0 text-white fs-5 p-3'
+        href='/posts'
       >
         Home
       </a>
     </li>
-    <li class="float-end action">
+    <li class='float-end action'>
       <div
-        class="btn btn-dark border-secondary p-0 p-2 px-4 d-flex gap-3 align-items-center text-white rounded-5"
-        @click="menuToggle"
+        class='btn btn-dark border-secondary p-0 p-2 px-4 d-flex gap-3 align-items-center text-white rounded-5'
+        @click='menuToggle'
       >
         <img
-          src="https://www.gravatar.com/avatar/{{md5
+          src='https://www.gravatar.com/avatar/{{md5
             user.email
-          }}?s=80&d=robohash"
-          class="rounded-circle"
-          height="38"
-          alt=""
+          }}?s=80&d=robohash'
+          class='rounded-circle'
+          height='38'
+          alt=''
         />
-        <p class="m-0 overflow-hidden text-nowrap text-truncate">
+        <p class='m-0 overflow-hidden text-nowrap text-truncate'>
           {{user.name}}
         </p>
       </div>
       <div
-        class="menu invisible position-absolute opacity-0 bg-dark shadow"
-        x-ref="menu"
+        class='menu invisible position-absolute opacity-0 bg-dark shadow'
+        x-ref='menu'
       >
-        <ul class="m-0 p-0 align-items-center">
-          <div class="d-flex flex-column gap-2 py-3 align-items-center justify-content-center border-bottom border-1 border-secondary border-opacity-75">
+        <ul class='m-0 p-0 align-items-center'>
+          <div
+            class='d-flex flex-column gap-2 py-3 align-items-center justify-content-center border-bottom border-1 border-secondary border-opacity-75'
+          >
             <img
-              src="https://www.gravatar.com/avatar/{{md5
+              src='https://www.gravatar.com/avatar/{{md5
                 user.email
-              }}?s=80&d=robohash"
-              class="rounded-circle"
-              height="80"
-              width="80"
-              alt=""
+              }}?s=80&d=robohash'
+              class='rounded-circle'
+              height='80'
+              width='80'
+              alt=''
             />
-            <p class="m-0 p-0">
+            <p class='m-0 p-0'>
               {{user.name}}
             </p>
-            <p class="m-0 p-0 fw-lighter text-opacity-50">
+            <p class='m-0 p-0 fw-lighter text-opacity-50'>
               {{user.email}}
             </p>
           </div>
-          <li class="btn w-100 border-0 rounded-0 p-2"><a
-              class="py-2 text-decoration-none float-start fs-6 text-white"
-              href="/rentals"
-            ><i class="bi bi-person-circle opacity-75 me-3"></i>Meus alugueis</a></li>
-          <li class="btn w-100 border-0 rounded-0 p-2"><a
-              class="py-2 text-decoration-none float-start fs-6 text-white"
-              href="#"
+          <li class='btn w-100 border-0 rounded-0 p-2'><a
+              class='py-2 text-decoration-none float-start fs-6 text-white'
+              href='/rentals'
+            ><i class='bi bi-person-circle opacity-75 me-3'></i>Meus alugueis</a></li>
+          <li class='btn w-100 border-0 rounded-0 p-2'><a
+              class='py-2 text-decoration-none float-start fs-6 text-white'
+              href='#'
             ><i
-                class="bi bi-gear-wide opacity-75 me-3"
+                class='bi bi-gear-wide opacity-75 me-3'
               ></i>Configurações</a></li>
           <form
-            action="/logout"
-            method="post"
-            class="d-flex p-2 justify-content-center border-top border-1 border-secondary border-opacity-50"
+            action='/logout'
+            method='post'
+            class='d-flex p-2 justify-content-center border-top border-1 border-secondary border-opacity-50'
           >
             <button
-              class="btn btn-dark border d-flex align-items-center justify-content-center gap-2 rounded-1 w-50 text-white"
+              class='btn btn-dark border d-flex align-items-center justify-content-center gap-2 rounded-1 w-50 text-white'
             >
-              <p class="m-0 p-0">Sair</p>
+              <p class='m-0 p-0'>Sair</p>
             </button>
           </form>
         </ul>

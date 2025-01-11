@@ -1,55 +1,54 @@
 <div
-  class="row flex-column-reverse d-lg-flex flex-lg-row gap-lg-0 d-md-flex flex-md-row gap-md-0 gap-4 p-lg-0 p-md-0 p-2 m-lg-0 m-md-0 m-1 text-white bg-dark"
+  class='row flex-column-reverse d-lg-flex flex-lg-row gap-lg-0 d-md-flex flex-md-row gap-md-0 gap-4 p-lg-0 p-md-0 p-2 m-lg-0 m-md-0 m-1 text-white bg-dark'
 >
-  <div class="d-flex flex-column gap-4 col-lg-8 col-md-8 p-lg-5 p-md-3 p-0 h-100">
-    <p class="m-0 p-0 fs-3 fw-semibold">Como você realizar sua compra?</p>
-    <div class="container-lg p-0 d-flex flex-column gap-lg-3 rounded-1">
+  <div
+    class='d-flex flex-column gap-4 col-lg-8 col-md-8 p-lg-5 p-md-3 p-0 h-100'
+  >
+    <p class='m-0 p-0 fs-3 fw-semibold'>Como você realizar sua compra?</p>
+    <div class='container-lg p-0 d-flex flex-column gap-lg-3 rounded-1'>
       <a
-        href=""
-        class="d-flex bg-black bg-opacity-100 btn btn-light border-0 rounded-0 text-decoration-none p-lg-3 ps-lg-4 p-2"
-      ><p class="p-0 m-0 text-start text-white fs-6 fw-semibold w-100">Pix</p><p
-          class="text-end m-0 p-0 fs-6 fw-bold text-white w-100"
+        href='#'
+        class='d-flex bg-black bg-opacity-100 btn btn-light border-0 rounded-0 text-decoration-none p-lg-3 ps-lg-4 p-2'
+      ><p class='p-0 m-0 text-start text-white fs-6 fw-semibold w-100'>Pix</p><p
+          class='text-end m-0 p-0 fs-6 fw-bold text-white w-100'
         >>></p></a>
       <a
-        href=""
-        class="d-flex bg-black bg-opacity-100 btn btn-light border-0 rounded-0 text-decoration-none p-lg-3 ps-lg-4 p-2"
-      ><p class="p-0 m-0 text-start text-white fs-6 fw-semibold w-100">Cartão de
+        href='#'
+        class='d-flex bg-black bg-opacity-100 btn btn-light border-0 rounded-0 text-decoration-none p-lg-3 ps-lg-4 p-2'
+      ><p class='p-0 m-0 text-start text-white fs-6 fw-semibold w-100'>Cartão de
           Crédito</p><p
-          class="text-end m-0 p-0 fs-6 fw-bold text-white w-100"
+          class='text-end m-0 p-0 fs-6 fw-bold text-white w-100'
         >>></p></a>
     </div>
   </div>
-  <div
-    class="col-lg-4 col-md-4 d-flex flex-column gap-4 p-0"
-  >
+  <div class='col-lg-4 col-md-4 d-flex flex-column gap-4 p-0'>
     <div
-      class="d-flex align-items-center justify-content-center p-3 bg-secondary bg-opacity-50"
-      style="height: 60%;"
+      class='d-flex align-items-center justify-content-center p-3 bg-secondary bg-opacity-50'
+      style='height: 60%;'
     >
       <img
         src={{post.url}}
-        class="h-3"
-        alt="..."
-        style="max-height: 400em; max-width: 100%;"
+        class='h-3'
+        alt='...'
+        style='max-height: 400em; max-width: 100%;'
       />
     </div>
-    <div class="container">
-      <p class="fs-4 fw-bold">
+    <div class='container'>
+      <p class='fs-4 fw-bold'>
         {{post.title}}
       </p>
       <div
-        class="d-flex pt-3 align-items-center border-white border-1 border-top border-opacity-10"
+        class='d-flex pt-3 align-items-center border-white border-1 border-top border-opacity-10'
       >
-        <p class="fs-5 m-0 p-0 w-100">Você pagará</p>
-        <p class="fs-5 m-0 p-0 fw-bold text-end w-100">
-          R$:
+        <p class='fs-5 m-0 p-0 w-100'>Você pagará</p>
+        <p class='fs-5 m-0 p-0 fw-bold text-end w-100'>
           {{post.valuePerDay}}
         </p>
       </div>
     </div>
-    <div class="m-lg-3 m-md-2">
-      <form action="/posts/rent/{{post._id}}" method="POST">
-        <button type="submit" class="btn btn-primary w-100">
+    <div class='m-lg-3 m-md-2'>
+      <form action='/posts/rent/{{post._id}}' method='POST'>
+        <button type='submit' class='btn btn-primary w-100'>
           <strong>Confirmar</strong>
         </button>
       </form>

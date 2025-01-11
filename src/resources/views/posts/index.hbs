@@ -1,39 +1,39 @@
-<div class="d-flex flex-column my-3 gap-3">
-  <div class="d-flex p-4">
-    <p class="fs-1 fw-semibold m-0 col-6">Carros</p>
-    <div class="col-6 d-flex m-0 my-auto justify-content-end">
-      <a class="btn btn-dark" href="/posts/create">
+<div class='d-flex flex-column my-3 gap-3'>
+  <div class='d-flex p-4'>
+    <p class='fs-1 fw-semibold m-0 col-6'>Carros</p>
+    <div class='col-6 d-flex m-0 my-auto justify-content-end'>
+      <a class='btn btn-dark' href='/posts/create'>
         Criar postagem
       </a>
     </div>
   </div>
-  <ul class="d-flex flex-wrap p-0 w-100">
+  <ul class='d-flex flex-wrap p-0 w-100'>
     {{#each posts as |post|}}
-      <li class="list-unstyled col-12 col-md-6 col-lg-6 col-xl-4 p-2">
+      <li class='list-unstyled col-12 col-md-6 col-lg-6 col-xl-4 p-2'>
         <a
-          href="/posts/{{post._id}}"
-          class="card h-100 w-100 text-decoration-none bg-dark rounded-1 shadow"
+          href='/posts/{{post._id}}'
+          class='card h-100 w-100 text-decoration-none bg-dark rounded-1 shadow'
         >
           <div
-            class="d-flex align-items-center justify-content-center m-3 bg-secondary bg-opacity-50"
-            style="height: 60%;"
+            class='d-flex align-items-center justify-content-center m-3 bg-secondary bg-opacity-50'
+            style='height: 60%;'
           >
             <img
               src={{post.url}}
-              class="h-3"
-              alt="..."
-              style="max-height: 250px; max-width: 100%;"
+              class='h-3'
+              alt='...'
+              style='max-height: 250px; max-width: 100%;'
             />
           </div>
           <div
-            class="card-body border-top border-light border-opacity-25 text-light p-4"
+            class='card-body border-top border-light border-opacity-25 text-light p-4'
           >
-            <h2 class="card-title fw-normal">R$: {{post.valuePerDay}}</h2>
-            <p class="m-0 my-1 opacity-50">{{post.year}}
+            <h2 class='card-title fw-normal'>{{post.valuePerDay}}</h2>
+            <p class='m-0 my-1 opacity-50'>{{post.year}}
               |
               {{post.maxSpeed}}
               Km/h</p>
-            <h5 class="card-title fw-light">{{post.title}}</h5>
+            <h5 class='card-title fw-light'>{{post.title}}</h5>
           </div>
         </a>
       </li>

@@ -7,15 +7,22 @@ class PostsController {
   async store(req, res) {
     //* armazenar dados do model no banco de dados
     try {
-      const cars = await Posts.find({ seller: req.user._id });
+      const posts = await Posts.find({ seller: req.user._id });
 
       if (!req.file) {
-        throw new Error();
+        throw new Error('Nenhuma imagem enviada!');
       }
 
       const { filename: fileName, size: fileSize } = req.file;
 
       const key = fileName;
+      let url = '';
+
+      if (req.file.url) {
+        url = req.file.url;
+      } else if (req.file.linkUrl) {
+        url = req.file.linkUrl;
+      }
 
       const errors = [];
 
@@ -68,7 +75,7 @@ class PostsController {
       ) {
         errors.push({ text: 'Velocidade máxima invalida' });
       }
-      if (cars.length >= 7) {
+      if (posts.length >= 10) {
         errors.push({ text: 'Número máximo de posts atingido' });
       }
       if (errors.length > 0) {
@@ -79,7 +86,20 @@ class PostsController {
           fileName,
           fileSize,
           key,
+          url,
         });
+        const valuePerDay = data.valuePerDay;
+        const formatedValuePerDay = valuePerDay.replace(/[^0-9]/g, '');
+
+        data.valuePerDay = (
+          valuePerDay.includes(',') &&
+          valuePerDay[valuePerDay.length - 1] !== ','
+            ? valuePerDay.split(',').pop().length === 1
+              ? ((Number(formatedValuePerDay) * 10) / 100).toFixed(2)
+              : (Number(formatedValuePerDay) / 100).toFixed(2)
+            : Number(formatedValuePerDay).toFixed(2)
+        ).replace(/[^0-9]/g, '');
+
         await Posts.create({
           ...data,
           seller: req.user._id,
@@ -88,18 +108,20 @@ class PostsController {
         return res.redirect('/posts');
       }
     } catch (error) {
-      req.flash(
-        'error_message',
-        'Erro ao criar o post, tente novamente!',
-      );
-      console.log('here', error);
+      req.flash('error_message', 'Erro ao criar o post, tente novamente!');
       return res.redirect('/posts');
     }
   }
 
   async index(_, res) {
     //* listagem dos models no banco de dados
-    const posts = await Posts.find();
+    const posts = (await Posts.find()).map((post) => {
+      post.valuePerDay = Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+      }).format(Number(post.valuePerDay) / 100);
+      return post;
+    });
     return res.render('posts/index', { posts });
   }
 
@@ -114,8 +136,12 @@ class PostsController {
       }
 
       //* validação de aluguel
-      const rentedCar = await Rent.find({ cars: post });
+      const rentedCar = await Rent.find({ car: post });
       const isNotOwner = post.seller.id.toString() !== user?._id.toString();
+      post.valuePerDay = Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+      }).format(Number(post.valuePerDay) / 100);
 
       //* Renderização da tela passando a validação de aluguel
       return res.render('posts/show', { post, isNotOwner, rentedCar });
@@ -209,10 +235,7 @@ class PostsController {
         }
       }
     } catch (error) {
-      req.flash(
-        'error_message',
-        'Erro ao editar o post, tente novamente!',
-      );
+      req.flash('error_message', 'Erro ao editar o post, tente novamente!');
       return res.redirect('/posts');
     }
   }
@@ -230,17 +253,11 @@ class PostsController {
         req.flash('success_message', 'Post removido com sucesso!');
         return res.redirect('/posts');
       } else {
-        req.flash(
-          'error_message',
-          'Erro ao remover o post, tente novamente!',
-        );
+        req.flash('error_message', 'Erro ao remover o post, tente novamente!');
         return res.redirect('/posts');
       }
     } catch (err) {
-      req.flash(
-        'error_message',
-        'Erro ao remover o post, tente novamente!',
-      );
+      req.flash('error_message', 'Erro ao remover o post, tente novamente!');
       return res.redirect('/posts');
     }
   }

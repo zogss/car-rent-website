@@ -14,11 +14,6 @@ const UserSchema = new mongoose.Schema(
       trim: true,
       unique: true,
     },
-    /*cars: {
-      type: String,
-      required: true,
-      trim: true,
-    },*/
     password: {
       type: String,
       required: true,

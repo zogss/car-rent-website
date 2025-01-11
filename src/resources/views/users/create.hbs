@@ -1,113 +1,105 @@
 <section
-  class="vh-100"
-  style="background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))"
+  class='vh-100'
+  style='background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))'
 >
   <form
-    action="/users"
-    class="h-100 container needs-validation"
-    method="post"
+    action='/users'
+    class='h-100 container needs-validation'
+    method='post'
     novalidate
   >
-    <div class="d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="card bg-dark text-white">
-          <div class="card-body text-center p-5 d-flex flex-column gap-4">
+    <div class='d-flex justify-content-center align-items-center h-100'>
+      <div class='col-12 col-md-8 col-lg-6 col-xl-5'>
+        <div class='card bg-dark text-white'>
+          <div class='card-body text-center p-5 d-flex flex-column gap-4'>
             <div>
-              <h2 class="fw-semibold text-uppercase m-0">Registration</h2>
-              <p class="text-white-50 m-0">Create your account here!</p>
+              <h2 class='fw-semibold text-uppercase m-0'>Registration</h2>
+              <p class='text-white-50 m-0'>Create your account here!</p>
             </div>
             {{#each errors}}
-              <div class="alert alert-danger m-0">{{text}}</div>
+              <div class='alert alert-danger m-0'>{{text}}</div>
             {{else}}
 
             {{/each}}
 
             {{> auth_msg}}
-            <div class="d-grid gap-4">
-              <div
-                class="form-outline form-white text-start fw-semibold fs-5"
-              >
-                <label class="form-label" for="name">Name:</label>
+            <div class='d-grid gap-4'>
+              <div class='form-outline form-white text-start fw-semibold fs-5'>
+                <label class='form-label' for='name'>Name:</label>
                 <input
-                  type="text"
-                  class="form-control"
-                  id="name"
-                  name="name"
-                  placeholder="Name"
-                  aria-describedby="inputGroupPrepend"
+                  type='text'
+                  class='form-control'
+                  id='name'
+                  name='name'
+                  placeholder='Name'
+                  aria-describedby='inputGroupPrepend'
                   required
                 />
-                <div class="invalid-feedback">
+                <div class='invalid-feedback'>
                   Por favor, preencha seu nome!
                 </div>
               </div>
 
-              <div
-                class="form-outline form-white text-start fw-semibold fs-5"
-              >
-                <label class="form-label" for="email">Email:</label>
+              <div class='form-outline form-white text-start fw-semibold fs-5'>
+                <label class='form-label' for='email'>Email:</label>
                 <input
-                  type="email"
-                  class="form-control"
-                  id="email"
-                  name="email"
-                  placeholder="email@email.com"
-                  aria-describedby="inputGroupPrepend"
+                  type='email'
+                  class='form-control'
+                  id='email'
+                  name='email'
+                  placeholder='email@email.com'
+                  aria-describedby='inputGroupPrepend'
                   required
                 />
-                <div class="invalid-feedback">
+                <div class='invalid-feedback'>
                   Por favor, preencha o e-mail!
                 </div>
               </div>
 
-              <div
-                class="form-outline form-white text-start fw-semibold fs-5"
-              >
-                <label class="form-label" for="password">Password:</label>
+              <div class='form-outline form-white text-start fw-semibold fs-5'>
+                <label class='form-label' for='password'>Password:</label>
                 <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder="Password"
-                  class="form-control"
-                  aria-describedby="inputGroupPrepend"
-                  minlength="8"
+                  type='password'
+                  id='password'
+                  name='password'
+                  placeholder='Password'
+                  class='form-control'
+                  aria-describedby='inputGroupPrepend'
+                  minlength='8'
                   required
                 />
-                <div class="invalid-feedback">
+                <div class='invalid-feedback'>
                   Por favor, preencha a senha!
                 </div>
               </div>
 
-              <div
-                class="form-outline form-white text-start fw-semibold fs-5"
-              >
-                <label class="form-label" for="password_confirmation">Password
+              <div class='form-outline form-white text-start fw-semibold fs-5'>
+                <label class='form-label' for='password_confirmation'>Password
                   confirmation:</label>
                 <input
-                  type="password"
-                  id="password_confirmation"
-                  name="password_confirmation"
-                  placeholder="Password confirmation"
-                  class="form-control"
-                  aria-describedby="inputGroupPrepend"
-                  minlength="8"
+                  type='password'
+                  id='password_confirmation'
+                  name='password_confirmation'
+                  placeholder='Password confirmation'
+                  class='form-control'
+                  aria-describedby='inputGroupPrepend'
+                  minlength='8'
                   required
                 />
-                <div class="invalid-feedback">
+                <div class='invalid-feedback'>
                   Por favor, confirme a senha!
                 </div>
               </div>
             </div>
-            <div class="my-2">
+            <div class='my-2'>
               <button
-                class="btn btn-outline-light px-5 fs-5"
-                type="submit"
+                class='btn btn-outline-light px-5 fs-5'
+                type='submit'
               >Register</button>
             </div>
             <div>
-              <p class="m-0">Alreary have an account?
-                <a href="/login" class="text-white-50 fw-bold">Sign In</a>
+              <p class='m-0'>Alreary have an account?
+                <a href='/login' class='text-white-50 fw-bold'>Sign In</a>
               </p>
             </div>
           </div>

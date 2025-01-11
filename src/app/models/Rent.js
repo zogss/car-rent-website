@@ -6,7 +6,7 @@ const RentSchema = new mongoose.Schema({
     required: true,
     ref: 'User',
   },
-  cars: {
+  car: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: 'Posts',

@@ -1,51 +1,70 @@
-<div x-data="ShowPage" class="row p-lg-5 gap-lg-0 gap-3 p-2 m-0 my-5 bg-dark text-white rounded-1">
-  <div class="col-lg-8 col-12 p-lg-4 p-1 h-100">
+<div
+  x-data='ShowPage'
+  class='row p-lg-5 gap-lg-0 gap-3 p-2 m-0 my-5 bg-dark text-white rounded-1'
+>
+  <div class='col-lg-8 col-12 p-lg-4 p-1 h-100'>
     <div
-      class="d-flex align-items-center justify-content-center m-3 p-3 bg-secondary bg-opacity-50"
-      style="min-height: 50vh;"
+      class='d-flex align-items-center justify-content-center m-3 p-3 bg-secondary bg-opacity-50'
+      style='min-height: 50vh;'
     >
       <img
         src={{post.url}}
-        class="h-3"
-        alt="..."
-        style="max-height: 50vh; max-width: 100%;"
+        class='h-3'
+        alt='...'
+        style='max-height: 50vh; max-width: 100%;'
       />
     </div>
-    <div class="d-none d-lg-block pt-4 mt-5 border-top border-1 border-white border-opacity-50">
+    <div
+      class='d-none d-lg-block pt-4 mt-5 border-top border-1 border-white border-opacity-50'
+    >
       <table>
         <tbody>
-          <tr class="text-white">
-            <th class="bg-secondary bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6">Marca</th>
+          <tr class='text-white'>
+            <th
+              class='bg-secondary bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6'
+            >Marca</th>
             <td
-              class="bg-white bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100"
+              class='bg-white bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100'
             >{{post.brand}}</td>
           </tr>
-          <tr class="text-white">
-            <th class="bg-secondary bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6">Modelo</th>
+          <tr class='text-white'>
+            <th
+              class='bg-secondary bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6'
+            >Modelo</th>
             <td
-              class="bg-white bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100"
+              class='bg-white bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100'
             >{{post.model}}</td>
           </tr>
-          <tr class="text-white">
-            <th class="bg-secondary bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6">Ano</th>
-            <td class="bg-white bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100">{{post.year}}</td>
-          </tr>
-          <tr class="text-white">
-            <th class="bg-secondary bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6">Placa</th>
+          <tr class='text-white'>
+            <th
+              class='bg-secondary bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6'
+            >Ano</th>
             <td
-              class="bg-white bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100"
+              class='bg-white bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100'
+            >{{post.year}}</td>
+          </tr>
+          <tr class='text-white'>
+            <th
+              class='bg-secondary bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6'
+            >Placa</th>
+            <td
+              class='bg-white bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100'
             >{{post.plate}}</td>
           </tr>
-          <tr class="text-white">
-            <th class="bg-secondary bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6">Comprimento</th>
-            <td class="bg-white bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100">{{post.size}}</td>
-          </tr>
-          <tr class="text-white">
+          <tr class='text-white'>
             <th
-              class="bg-secondary bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 text-nowrap"
+              class='bg-secondary bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6'
+            >Comprimento</th>
+            <td
+              class='bg-white bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100'
+            >{{post.size}}</td>
+          </tr>
+          <tr class='text-white'>
+            <th
+              class='bg-secondary bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 text-nowrap'
             >Velocidade máxima</th>
             <td
-              class="bg-white bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100"
+              class='bg-white bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100'
             >{{post.maxSpeed}}</td>
           </tr>
         </tbody>
@@ -53,47 +72,47 @@
     </div>
   </div>
 
-  <div class="col-lg-4 p-0 d-flex flex-column gap-3">
-    <div class="d-flex flex-column gap-5 p-3 rounded border border-secondary">
-      <div class="d-flex flex-column gap-4">
-        <p class="fs-3 m-0 fw-semibold">
+  <div class='col-lg-4 p-0 d-flex flex-column gap-3'>
+    <div class='d-flex flex-column gap-5 p-3 rounded border border-secondary'>
+      <div class='d-flex flex-column gap-4'>
+        <p class='fs-3 m-0 fw-semibold'>
           {{post.title}}
         </p>
-        <p class="fs-3 m-0">
+        <p class='fs-3 m-0'>
           R$:
           {{post.valuePerDay}}
         </p>
-        <p class="fs-6 m-0">Estoque disponível</p>
+        <p class='fs-6 m-0'>Estoque disponível</p>
       </div>
-      <div class="m-0 p-0">
+      <div class='m-0 p-0'>
         {{#if isNotOwner}}
           {{#if rentedCar}}
-            <div class="d-flex justify-content-center align-items-center">
-              <p class="m-0 fs-2 fw-bold text-danger">
+            <div class='d-flex justify-content-center align-items-center'>
+              <p class='m-0 fs-2 fw-bold text-danger'>
                 Rented
               </p>
             </div>
           {{else}}
-            <div class="d-flex justify-content-center align-items-center">
+            <div class='d-flex justify-content-center align-items-center'>
               <a
-                href="/posts/rent/create/{{post._id}}"
-                class="btn btn-primary w-100 mb-2"
+                href='/posts/rent/create/{{post._id}}'
+                class='btn btn-primary w-100 mb-2'
               >
                 <strong>Alugar</strong>
               </a>
             </div>
           {{/if}}
         {{else}}
-          <div class="justify-content-center align-items-center gap-4">
+          <div class='justify-content-center align-items-center gap-4'>
             <a
-              href="/posts/{{post._id}}/edit"
-              class="btn btn-primary w-100 mb-2"
+              href='/posts/{{post._id}}/edit'
+              class='btn btn-primary w-100 mb-2'
             >
               <strong>Editar</strong>
             </a>
             <button
-              type="submit"
-              class="btn btn-danger w-100"
+              type='submit'
+              class='btn btn-danger w-100'
               @click="deletePost('{{post._id}}')"
             >
               <strong>Deletar</strong>
@@ -102,15 +121,15 @@
         {{/if}}
       </div>
     </div>
-    <div class="d-flex flex-column gap-2 p-3 rounded border border-secondary">
-      <p class="fs-5">Informações do vendedor</p>
-      <div class="d-flex p-1 gap-2 text-nowrap">
+    <div class='d-flex flex-column gap-2 p-3 rounded border border-secondary'>
+      <p class='fs-5'>Informações do vendedor</p>
+      <div class='d-flex p-1 gap-2 text-nowrap'>
         <img
-          src="https://www.gravatar.com/avatar/{{md5
+          src='https://www.gravatar.com/avatar/{{md5
             post.seller.email
-          }}?s=80&d=robohash"
-          class="w-25 bg-black bg-opacity-50"
-          alt="..."
+          }}?s=80&d=robohash'
+          class='w-25 bg-black bg-opacity-50'
+          alt='...'
         />
         <p>
           {{post.seller.name}}
@@ -119,45 +138,58 @@
     </div>
   </div>
 
-   <div class="d-block d-lg-none pt-4">
-      <table>
-        <tbody>
-          <tr class="text-white">
-            <th class="bg-secondary bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6">Marca</th>
-            <td
-              class="bg-white bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100"
-            >{{post.brand}}</td>
-          </tr>
-          <tr class="text-white">
-            <th class="bg-secondary bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6">Modelo</th>
-            <td
-              class="bg-white bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100"
-            >{{post.model}}</td>
-          </tr>
-          <tr class="text-white">
-            <th class="bg-secondary bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6">Ano</th>
-            <td class="bg-white bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100">{{post.year}}</td>
-          </tr>
-          <tr class="text-white">
-            <th class="bg-secondary bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6">Placa</th>
-            <td
-              class="bg-white bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100"
-            >{{post.plate}}</td>
-          </tr>
-          <tr class="text-white">
-            <th class="bg-secondary bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6">Comprimento</th>
-            <td class="bg-white bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100">{{post.size}}</td>
-          </tr>
-          <tr class="text-white">
-            <th
-              class="bg-secondary bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 text-nowrap"
-            >Velocidade máxima</th>
-            <td
-              class="bg-white bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100"
-            >{{post.maxSpeed}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div class='d-block d-lg-none pt-4'>
+    <table>
+      <tbody>
+        <tr class='text-white'>
+          <th
+            class='bg-secondary bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6'
+          >Marca</th>
+          <td
+            class='bg-white bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100'
+          >{{post.brand}}</td>
+        </tr>
+        <tr class='text-white'>
+          <th
+            class='bg-secondary bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6'
+          >Modelo</th>
+          <td
+            class='bg-white bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100'
+          >{{post.model}}</td>
+        </tr>
+        <tr class='text-white'>
+          <th
+            class='bg-secondary bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6'
+          >Ano</th>
+          <td
+            class='bg-white bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100'
+          >{{post.year}}</td>
+        </tr>
+        <tr class='text-white'>
+          <th
+            class='bg-secondary bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6'
+          >Placa</th>
+          <td
+            class='bg-white bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100'
+          >{{post.plate}}</td>
+        </tr>
+        <tr class='text-white'>
+          <th
+            class='bg-secondary bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6'
+          >Comprimento</th>
+          <td
+            class='bg-white bg-opacity-25 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100'
+          >{{post.size}}</td>
+        </tr>
+        <tr class='text-white'>
+          <th
+            class='bg-secondary bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 text-nowrap'
+          >Velocidade máxima</th>
+          <td
+            class='bg-white bg-opacity-50 p-lg-3 p-sm-2 p-2 ps-lg-4 ps-sm-3 ps-2 fs-lg-5 fs-6 w-100'
+          >{{post.maxSpeed}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

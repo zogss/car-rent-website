@@ -8,7 +8,7 @@ class RentController {
     //* armazenar dados do model no banco de dados
     await Rent.create({
       user: req.user._id,
-      cars: req.params.id,
+      car: req.params.id,
       rentTime: 'tempo aleatorio',
       rentCar: 'retorno de carro',
       return: false,
@@ -19,8 +19,16 @@ class RentController {
 
   async index(req, res) {
     //* mostra os models
-    const rent = await Rent.find({ user: req.user._id }).populate('cars');
-    return res.render('rents/index', { rent });
+    const rents = (await Rent.find({ user: req.user._id }).populate('car')).map(
+      (rent) => {
+        rent.car.valuePerDay = Intl.NumberFormat('pt-BR', {
+          style: 'currency',
+          currency: 'BRL',
+        }).format(Number(rent.car.valuePerDay) / 100);
+        return rent;
+      },
+    );
+    return res.render('rents/index', { rents });
   }
 
   // async show(req, res) {}
@@ -46,10 +54,7 @@ class RentController {
         return res.redirect('/rentals');
       }
     } catch (err) {
-      req.flash(
-        'error_message',
-        'Erro ao remover o aluguel, tente novamente!',
-      );
+      req.flash('error_message', 'Erro ao remover o aluguel, tente novamente!');
       return res.redirect('/rentals');
     }
   }

@@ -1,37 +1,34 @@
-<div x-data="IndexPage" class="container my-4 d-flex flex-column gap-4">
-  <div class="border-1 border-bottom border-light border-opacity-25">
-    <p class="fs-3 fw-semibold">Seus carros alugados</p>
-    <p class="fs-6">listagem de todos os seus carros alugados</p>
+<div x-data='IndexPage' class='container my-4 d-flex flex-column gap-4'>
+  <div class='border-1 border-bottom border-light border-opacity-25'>
+    <p class='fs-3 fw-semibold'>Seus carros alugados</p>
+    <p class='fs-6'>listagem de todos os seus carros alugados</p>
   </div>
-  {{#if rent}}
-    <ul class="d-flex flex-column gap-3 p-0">
-      {{#each rent as |rents|}}
+  {{#if rents}}
+    <ul class='d-flex flex-column gap-3 p-0'>
+      {{#each rents as |rent|}}
         <li
-          class="list-unstyled row m-0 align-items-center justify-content-center bg-dark rounded-1 shadow"
+          class='list-unstyled m-0 d-flex flex-wrap flex-md-nowrap align-items-center justify-content-center bg-dark rounded-1 shadow'
         >
-          <div
-            class="d-flex col-lg-3 col-4 p-1 align-items-center justify-content-center"
-          >
+          <div class='d-flex p-2 align-items-center justify-content-center'>
             <img
-              src={{rents.cars.url}}
-              class=""
-              alt="..."
-              style="max-width: 19vw; max-height: 13vh;"
+              src={{rent.car.url}}
+              alt='Car Image'
+              class='img-fluid rounded-1'
+              style='max-height: 180px;'
             />
           </div>
-          <div
-            class="col-lg-7 col-8 d-flex flex-column gap-2 p-lg-4 ps-2 p-1 border-start"
-          >
-            <p class="m-0 fw-semibold fs-5 pb-1">{{rents.cars.title}}</p>
-            <p class="m-0">{{rents.cars.brand}} {{rents.cars.model}}</p>
+          <div class='w-100 d-flex flex-column gap-2 p-lg-4 p-1'>
+            <p class='m-0 fw-semibold fs-5 pb-1'>{{rent.car.title}}</p>
+            <p class='m-0'>{{rent.car.brand}} {{rent.car.model}}</p>
           </div>
-          <div class="row h-100 p-2 m-0 col-lg-2">
-            <p class="col-10 align-self-center m-0 p-0 fs-5">R$:
-              {{rents.cars.valuePerDay}}</p>
+          <div class='d-flex gap-4 h-100 p-2 m-0'>
+            <p
+              class='align-self-center m-0 p-0 fs-5'
+            >{{rent.car.valuePerDay}}</p>
             <button
-              type="submit"
-              class="p-0 col-2 btn btn-danger align-self-center"
-              @click="deleteRent('{{rents._id}}')"
+              type='submit'
+              class='btn btn-danger btn-sm align-self-center flex-shrink-0'
+              @click="deleteRent('{{rent._id}}')"
             >X</button>
           </div>
         </li>
