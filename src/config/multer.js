@@ -40,10 +40,16 @@ const storageType = {
   gcloud: multerGCS({
     projectId: process.env.GCLOUD_PROJECT || '',
     bucket: process.env.GSC_BUCKET_NAME || '',
-    credentials: {
-      client_email: process.env.GSC_CLIENT_EMAIL || '',
-      private_key: process.env.GSC_PRIVATE_KEY || '',
-    },
+    credentials: (() => {
+      const base64EncodedServiceAccount =
+        process.env.GSC_BASE64_ENCODED_SERVICE_ACCOUNT || '';
+      const decodedServiceAccount = Buffer.from(
+        base64EncodedServiceAccount,
+        'base64',
+      ).toString('utf-8');
+      const credentials = JSON.parse(decodedServiceAccount);
+      return credentials;
+    })(),
     acl: 'publicRead',
     filename: (...[, file, cb]) => {
       let fileName = `${+new Date()}-${file.originalname}`;
